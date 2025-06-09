@@ -24,7 +24,7 @@ def validar(orden):
     for campo in campos_obligatorios:
         if campo not in orden or not orden[orden]:
             errores.append(f"el campo",{campo}, "es obligatorio")
-        return errores
+    return errores
 print("ingrese sus datos")
 usuario=(input("nombre de usuario: ")).strip()
 correo=(input("ingrese su correo: ")).strip()

@@ -7,20 +7,38 @@
 
 
 def validar(orden):
-    campos_obligatorios=["nombre","edad","carrera"]
-    errores=[]
+    campos_obligatorios = ["nombre", "edad", "carrera"]
+    errores = []
 
     for campo in campos_obligatorios:
         if campo not in orden or not orden[campo]:
-            errores.append(f"el campo",{campo},"le faltan datos")
+            errores.append(f"El campo '{campo}' le faltan datos.")
     return errores
-print("ingrese sus datos")
-nombre=input("ingrese su nombre: ").strip()
-edad=int(input("ingrese su edad: ").strip())
-carrera=input("ingrese carrera: ").strip()
-if edad<17:
-    print("debes ser mayor de 17 años")
-elif edad>17 and campos_obligatorios = True:
-    print("su formulario ha sido reguistrado con exito")
+
+print("Ingrese sus datos")
+nombre = input("Ingrese su nombre: ").strip()
+edad_input = input("Ingrese su edad: ").strip()
+
+# Validamos que la edad sea numérica
+if not edad_input.isdigit():
+    print("La edad debe ser un número entero.")
 else:
-    print("ingrese correctmente los datos")
+    edad = int(edad_input)
+    carrera = input("Ingrese carrera: ").strip()
+
+    datos = {
+        "nombre": nombre,
+        "edad": edad,
+        "carrera": carrera
+    }
+
+    errores = validar(datos)
+
+    if edad < 17:
+        print("Debes ser mayor de 17 años.")
+    elif errores:
+        print("Errores en el formulario:")
+        for error in errores:
+            print("-", error)
+    else:
+        print("Su formulario ha sido registrado con éxito.")
